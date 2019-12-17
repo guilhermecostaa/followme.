@@ -32,9 +32,12 @@
   </div>
 </template>
 
+
+
 <style scoped>
-.navbar-default{
-    background-color: #1F6B69;
+
+.navbar-default {
+    background-color: #1F6B69 !important;
 }
 .navbar-brand{
     margin-left: 10px;

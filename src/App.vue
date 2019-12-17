@@ -21,7 +21,7 @@
 
 #nav a {
   font-weight: bold;
-  color: "follow2";
+  color: #5B8687;
 }
 
 #nav a.router-link-exact-active {
