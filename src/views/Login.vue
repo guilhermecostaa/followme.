@@ -3,13 +3,13 @@
     <section>
       <div class="box">
         <b-form @submit="onSubmit" @reset="onReset">
-          <b-form-group id="input-number" label="Number:" label-for="input-number">
+          <b-form-group id="input-number" label="Número:" label-for="input-number">
             <b-form-input
               id="input-number"
               v-model="form.number"
-              type="email"
+              type="text"
               required
-              placeholder="Enter email"
+              placeholder="Número"
             ></b-form-input>
           </b-form-group>
 
