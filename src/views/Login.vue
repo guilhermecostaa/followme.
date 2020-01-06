@@ -1,7 +1,10 @@
 <template>
   <div class="login">
-    <section>
-      <div class="box">
+      <section>
+        <div class="topleft">
+          <img src="../assets/LogoBranco.png" width="250" height="50">
+      </div>
+      <div class="box" >
         <b-form @submit="onSubmit" @reset="onReset">
           <b-form-group id="input-number" label="Número:" label-for="input-number">
             <b-form-input
@@ -26,8 +29,9 @@
           <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
+      
       </div>
-    </section>
+      </section>  
   </div>
 </template>
 
@@ -74,27 +78,43 @@ export default {
 </script>
 
 <style scoped>
-.section {
+
+section {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/NY.png");
+  background: url('../assets/NY.png');
   background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
+  width: 100vw;
+  background-color:rgb(31,107,105);opacity:0.7;
+  
 }
+.topleft {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-size: 18px;
+}
+
 .box {
   position: relative;
   max-width: 600px;
-  padding: 50px;
+  padding: 100px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  color: #000;
+  color: rgb(255, 255, 255);
+  background-color:rgb(102,122,131);opacity:0.8;
+
 }
 .box:before {
   content: "";
   position: absolute;
   background-attachment: fixed;
-  filter: blur(2px);
+  
 }
 </style>
