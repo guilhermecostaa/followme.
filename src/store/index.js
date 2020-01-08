@@ -14,6 +14,9 @@ export default new Vuex.Store({
   mutations: {
     USER_LOGGED_IN(state,id){
       state.loggedUserId = id;
+    },
+    USER_LOGGED_OUT(state){
+      state.loggedUserId = 0;
     }
   },
   getters:{
