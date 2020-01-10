@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar toggleable="lg" type="dark" variant="follow2">
       <b-navbar-brand href="#">
         <img src="../assets/LogoBranco.png" width="125" />
       </b-navbar-brand>
@@ -43,7 +43,7 @@ export default {
         confirmButtonText: "Sair"
       }).then(result => {
         if (result.value) {
-          this.$swal("Deleted!", "Your file has been deleted.", "success");
+          this.$swal("Sessão terminada!", "Até a próxima!", "success");
           this.$store.commit("USER_LOGGED_OUT");
           this.$router.push({ name: "login" });
         }
