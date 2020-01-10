@@ -6,11 +6,11 @@
       </div>
       <div class="box">
         <b-form @submit.prevent="onSubmit">
-          <b-form-group id="input-number" label="Número:" label-for="input-number">
+          <b-form-group id="input-number" label="Número" label-for="input-number">
             <b-form-input id="input-number" v-model="form.number" type="text" required></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-password" label="Password:" label-for="input-password">
+          <b-form-group id="input-password" label="Password" label-for="input-password">
             <b-form-input id="input-password" v-model="form.password" type="password" required></b-form-input>
           </b-form-group>
 
@@ -70,7 +70,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../assets/NY.png");
+  background: url("../assets/NY-1.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -94,7 +94,7 @@ section {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   color: rgb(255, 255, 255);
-  background-color: rgb(102, 122, 131);
+  background-color: rgb(91, 134, 135);
   opacity: 0.8;
 }
 .box:before {
