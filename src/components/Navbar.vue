@@ -54,6 +54,7 @@ export default {
 </script>
 
 <style scoped>
+
 .navbar-default {
   background-color: #1f6b69 !important;
 }
@@ -65,9 +66,10 @@ export default {
 }
 .nav-item {
   font-size: 1.05rem;
-  color: #5b8687 !important;
+  color: #CEE6DF !important;
   font-weight: 600;
   cursor: pointer;
+  font-family: Gotham Light;
 }
 .nav-link:hover {
   color: #ffffff !important;
