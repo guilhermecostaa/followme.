@@ -10,6 +10,14 @@ export default new Vuex.Store({
       {id: 2, name:"Gustavo", number:"9170196", password:"1234"}    
     ],
     loggedUserId: 0,
+    points: [
+      {
+        position: {
+          lat: 1,
+          lng: 2
+        }
+      }
+    ]
   },
   mutations: {
     USER_LOGGED_IN(state,id){
@@ -17,6 +25,9 @@ export default new Vuex.Store({
     },
     USER_LOGGED_OUT(state){
       state.loggedUserId = 0;
+    },
+    ADD_POINT(state,point){
+      state.points.push(point)
     }
   },
   getters:{
@@ -35,6 +46,9 @@ export default new Vuex.Store({
     },
     getLoggedUserId: state=>{
       return state.loggedUserId
+    },
+    getPoints: state=>{
+      return state.points
     }
   }
 })
