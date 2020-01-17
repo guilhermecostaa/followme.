@@ -1,18 +1,21 @@
 <template >
   <div>
-    <div class="PRINCIPAL"></div>
+    <div class="PRINCIPAL">
+      <div class="Texto">
+        <h1>FOLLOW ME. </h1>
+        <h4>O guia que tu precisas para seres feliz</h4>
+        <p>___________________________________________________________________________</p>
+        <h4>A plataforma onde poderás encontrar locais para visitar <br>
+           e também pessoas para socializar.</h4>
+      </div>
+    </div>
     <div class="MEIO row">
       <form @submit.prevent="search">
-        <input type="text" class="form-control" v-model="address" placeholder="Endereço/Local" />
-        <input type="submit" class="form-control btn btn-primary" value="Pesquisar" />
+        <input type="text" class="form-control" v-model="address" placeholder="Endereço/Local"/>
+        <input type="submit" class="form-control btn btn-primary" value="Pesquisar"/>
       </form>
       <br />
-      <GmapMap
-        :center="center"
-        :zoom="18"
-        map-type-id="terrain"
-        style="width: 100%; height: 500px"
-      >
+      <GmapMap :center="center" :zoom="8" map-type-id="terrain" style="width: 100%; height: 500px">
         <GmapMarker
           :key="index"
           v-for="(point, index) in getPoints"
@@ -24,20 +27,22 @@
         <GmapInfoWindow :options='{content: "teste"}'/>
       </GmapMap>
     </div>
-    <div class="FIM"></div>
+    <div class="FIM">
+      
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { mapGetters, mapMutations} from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "home",
   data() {
     return {
       address: "",
-      center: {lat:10, lng:10}
+      center: { lat: 39.3998718, lng: -8.2244539}
     };
   },
   methods: {
@@ -48,14 +53,13 @@ export default {
       );
       const point = {
         position: request.data.results[0].geometry.location
-      }
-      this.ADD_POINT(point)
-      this.center=point.position
+      };
+      this.ADD_POINT(point);
+      this.center = point.position;
     }
   },
-  computed:{
-    ...mapGetters(["getPoints"]),
-
+  computed: {
+    ...mapGetters(["getPoints"])
   }
 };
 </script>
@@ -99,5 +103,13 @@ export default {
   width: 100vw;
   background-color: rgb(31, 107, 105);
   opacity: 0.7;
+}
+h1 {
+  color: white;
+  letter-spacing: 5px;
+}
+.Texto{
+  color: white;
+  text-align: left;
 }
 </style>

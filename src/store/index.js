@@ -17,6 +17,11 @@ export default new Vuex.Store({
           lng: 2
         }
       }
+    ],
+    interestPoints: [
+      {id: 1, name:"Torre dos Clérigos", city:"Porto", desc:"Vista da cidade em torre barroca"},
+      {id: 2, name:"Livraria Lello", city:"Porto", desc:"Livraria ornada com escadaria vermelha"},
+      {id: 3, name:"Ponte D.Luís", city:"Porto", desc:"Ponte icónica de metal sobre o Douro"}
     ]
   },
   mutations: {
@@ -49,6 +54,10 @@ export default new Vuex.Store({
     },
     getPoints: state=>{
       return state.points
+    },
+    getInterestPoints: state=>{
+      return state.interestPoints
     }
+    
   }
 })
