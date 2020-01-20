@@ -2,7 +2,7 @@
   <div class="animated fadeIn">
     <b-card-group deck>
       <b-card
-        v-for="(interestPoint,index) in getInterestPoints"
+        v-for="(interestPoint,index) in currentPagePoints"
         :key="index"
         img-src="https://placekitten.com/g/300/300"
         img-alt="Img"

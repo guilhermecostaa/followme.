@@ -2,19 +2,22 @@
   <div>
     <div class="PRINCIPAL">
       <div class="Texto">
-        <h1>FOLLOW ME. </h1>
+        <h1>FOLLOW ME.</h1>
         <h4>O guia que tu precisas para seres feliz</h4>
         <p>___________________________________________________________________________</p>
-        <h4>A plataforma onde poderás encontrar locais para visitar <br>
-           e também pessoas para socializar.</h4>
+        <h4>
+          A plataforma onde poderás encontrar locais para visitar
+          <br />e também pessoas para socializar.
+        </h4>
       </div>
     </div>
     <div class="MEIO row">
       <form @submit.prevent="search">
-        <input type="text" class="form-control" v-model="address" placeholder="Endereço/Local"/>
-        <input type="submit" class="form-control btn btn-primary" value="Pesquisar"/>
+        <input type="text" class="form-control" v-model="address" placeholder="Endereço/Local" />
+        <input type="text" class="form-control" v-model="name" placeholder="Nome" />
+        <input type="text" class="form-control" v-model="description" placeholder="Descrição" />
+        <input type="submit" class="form-control btn btn-primary" value="Pesquisar" />
       </form>
-      <br />
       <GmapMap :center="center" :zoom="8" map-type-id="terrain" style="width: 100%; height: 500px">
         <GmapMarker
           :key="index"
@@ -24,12 +27,10 @@
           :draggable="true"
           @click="center=point.position"
         />
-        <GmapInfoWindow :options='{content: "teste"}'/>
+        <GmapInfoWindow :options="{content: 'teste'}" />
       </GmapMap>
     </div>
-    <div class="FIM">
-      
-    </div>
+    <div class="FIM"></div>
   </div>
 </template>
 
@@ -42,7 +43,9 @@ export default {
   data() {
     return {
       address: "",
-      center: { lat: 39.3998718, lng: -8.2244539}
+      description: "",
+      name: "",
+      center: { lat: 39.3998718, lng: -8.2244539 }
     };
   },
   methods: {
@@ -51,15 +54,22 @@ export default {
       const request = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${this.address}&key=AIzaSyCCsmQADrgWSiOCJ3YdkiH0g1jH2wGLjHQ`
       );
+      const city = request.data.results[0].address_components.filter(
+        addressComponent => addressComponent.types.some(type => type.toLowerCase() === "locality")
+      )[0].long_name
       const point = {
-        position: request.data.results[0].geometry.location
+        id: this.getPointsLastId,
+        position: request.data.results[0].geometry.location,
+        city,
+        description: this.description,
+        name: this.name
       };
       this.ADD_POINT(point);
       this.center = point.position;
     }
   },
   computed: {
-    ...mapGetters(["getPoints"])
+    ...mapGetters(["getPoints", "getPointsLastId"]),
   }
 };
 </script>
@@ -108,7 +118,7 @@ h1 {
   color: white;
   letter-spacing: 5px;
 }
-.Texto{
+.Texto {
   color: white;
   text-align: left;
 }

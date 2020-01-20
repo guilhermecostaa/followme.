@@ -10,19 +10,12 @@ export default new Vuex.Store({
       {id: 2, name:"Gustavo", number:"9170196", password:"1234"}    
     ],
     loggedUserId: 0,
-    points: [
-      {
-        position: {
-          lat: 1,
-          lng: 2
-        }
-      }
-    ],
-    interestPoints: [
+    points: [],
+    /*interestPoints: [
       {id: 1, name:"Torre dos Clérigos", city:"Porto", desc:"Vista da cidade em torre barroca"},
       {id: 2, name:"Livraria Lello", city:"Porto", desc:"Livraria ornada com escadaria vermelha"},
       {id: 3, name:"Ponte D.Luís", city:"Porto", desc:"Ponte icónica de metal sobre o Douro"}
-    ]
+    ]*/
   },
   mutations: {
     USER_LOGGED_IN(state,id){
@@ -57,7 +50,16 @@ export default new Vuex.Store({
     },
     getInterestPoints: state=>{
       return state.interestPoints
+    },
+    getPointsLastId: state=>{
+      let lastId = 1
+      state.points.forEach(point => {
+        if(point.id > lastId) {
+          lastId = point.id
+        }
+      })
+      return lastId
     }
-    
+
   }
 })
