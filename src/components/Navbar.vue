@@ -21,7 +21,7 @@
             <template v-slot:button-content>
               <em>Área Utilizador</em>
             </template>
-            <b-dropdown-item href="#">Perfil</b-dropdown-item>
+            <b-dropdown-item @click="btnPerfilClicked" href="#">Perfil</b-dropdown-item>
             <b-dropdown-item @click="btnLogoutClicked" href="#">Logout</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -48,6 +48,9 @@ export default {
           this.$router.push({ name: "login" });
         }
       });
+    },
+    btnPerfilClicked(){
+      this.$router.push({ name: "backoffice" });
     }
   }
 };
