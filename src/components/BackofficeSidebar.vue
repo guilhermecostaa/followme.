@@ -2,27 +2,27 @@
 
   <div id="parentx">
 
-    <vs-sidebar parent="body" default-index="1"  color="primary" class="sidebarx" spacer v-model="active">
+    <vs-sidebar static-position parent="body" index="1"  color="primary" class="sidebarx" spacer v-model="active">
 
       <div class="header-sidebar" slot="header">
         <vs-avatar  size="70px" src="https://randomuser.me/api/portraits/men/85.jpg"/>
 
         <h4>
-          {{getLoggedUserName}}
+          {{this.getLoggedUserNameById}}
           <vs-button color="primary" type="flat"></vs-button>
         </h4>
 
       </div>
 
-      <vs-sidebar-item index="1">
+      <vs-sidebar-item index="1" @click="btnPerfilClicked">
         Perfil
       </vs-sidebar-item>
 
-      <vs-sidebar-item index="2">
+      <vs-sidebar-item index="2" @click="btnUtilizadoresClicked">
         Utilizadores
       </vs-sidebar-item>
 
-      <vs-sidebar-item index="3">
+      <vs-sidebar-item index="3" @click="btnPontosInteresseClicked">
         Pontes de Interesse
       </vs-sidebar-item>
 
@@ -33,12 +33,23 @@
 
 <script>
 import { mapGetters } from "vuex";
-export default { 
+export default {
   data: () => ({
-    active: false
+    active: true
   }),
+  methods: {
+    btnPerfilClicked() {
+      this.$router.push({ name: "backoffice" });
+    },
+    btnUtilizadoresClicked() {
+      this.$router.push({ name: "backofficeUsers" });
+    },
+    btnPontosInteresseClicked() {
+      this.$router.push({ name: "backofficePontosInteresse" });
+    }
+  },
   computed: {
-      ...mapGetters(["getLoggedUserName"])
+    ...mapGetters(["getLoggedUserNameById"])
   }
 };
 </script>
