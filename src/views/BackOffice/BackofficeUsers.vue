@@ -1,35 +1,29 @@
 <template>
-	<div class="pb-5">
-		
-	</div>
+  <div>
+    <b-table
+      :bordered="bordered"
+      :hover="hover"
+      :items="items"
+      :fields="fields"
+    ></b-table>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-export default {
-	name: "BackofficeUsers",
-	data() {
-		return {
-			loading: false,
-			users: [],
-		}
-	},
-	methods: {
-		async loadPage() {
-			this.$store.commit("RESET_STATE")
-			this.loading = true
-			try {
-				const response = await this.$http.get("/users")
-				if (response.status === 200) {
-					this.users = response.data.content.users
-					this.loading = false
-				}
-			} catch (err) {
-				this.$router.push({ name: "home" })
-			}
-		}
-	}
-}
+  export default {
+    data() {
+      return {
+        fields: ['Nome', 'Número'],
+        items: [
+          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
+          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+          { age: 89, first_name: 'Geneva', last_name: 'Wilson' }
+        ],
+        bordered: true,
+        hover: true,
+      }
+    }
+  }
 </script>
 
 <style scoped>

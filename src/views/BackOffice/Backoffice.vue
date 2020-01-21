@@ -10,7 +10,7 @@
 <script>
 import BackofficeSidebar from "@/components/BackofficeSidebar.vue"
 export default {
-	name: "BackofficeView",
+	name: "Backoffice",
 	components: { BackofficeSidebar }
 }
 </script>

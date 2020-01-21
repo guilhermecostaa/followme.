@@ -59,7 +59,16 @@ export default new Vuex.Store({
         }
       })
       return lastId
+    },
+    getLoggedUsername: state=>{
+      let name = ""
+      const id = state.loggedUserId;
+      for (let i = 0; i < state.users.length; i++) {
+        if (id === state.users.id) {
+          name = state.users[i].name
+        }
+      }
+      return name
     }
-
   }
 })

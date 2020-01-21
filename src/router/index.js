@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MainView from '../views/MainView.vue'
 import Login from '../views/Login.vue'
+import Backoffice from '../views/BackOffice/Backoffice.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [
       name: 'home',
       component: Home
     }]
+  },
+  {
+    path: '/backoffice',
+    name: 'backoffice',
+    component: Backoffice
   }
 ]
 
