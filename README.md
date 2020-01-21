@@ -1,4 +1,4 @@
-# followme
+# Followme.
 
 ## Project setup
 ```
