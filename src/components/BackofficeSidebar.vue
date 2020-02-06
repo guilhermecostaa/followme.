@@ -23,7 +23,7 @@
       </vs-sidebar-item>
 
       <vs-sidebar-item index="3" @click="btnPontosInteresseClicked">
-        Pontes de Interesse
+        Pontos de Interesse
       </vs-sidebar-item>
 
     </vs-sidebar>

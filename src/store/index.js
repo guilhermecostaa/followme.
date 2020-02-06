@@ -5,10 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    users: [
-      {id: 1, name:"Guilherme", number:"9170193", password:"1234"},
-      {id: 2, name:"Gustavo", number:"9170196", password:"1234"}    
-    ],
+    users: [],
     loggedUserId: 0,
     points: [],
     /*interestPoints: [
@@ -26,6 +23,9 @@ export default new Vuex.Store({
     },
     ADD_POINT(state,point){
       state.points.push(point)
+    },
+    SET_USERS(state,users){
+      state.users = users
     }
   },
   getters:{
@@ -45,6 +45,9 @@ export default new Vuex.Store({
     getLoggedUserId: state=>{
       return state.loggedUserId
     },
+    getUserById: state=>id=>{
+      return state.users.find(user=>user.id === id)
+    },
     getPoints: state=>{
       return state.points
     },
@@ -60,15 +63,23 @@ export default new Vuex.Store({
       })
       return lastId
     },
-    getLoggedUsernameById: state=>{
+    getLoggedUsernameById: state=>id=>{
       let name = ""
-      const id = state.loggedUserId;
       for (let i = 0; i < state.users.length; i++) {
         if (id === state.users.id) {
           name = state.users[i].name
         }
       }
       return name
+    },
+    getUserTypeById: state=>id=>{
+      let type = ""
+      for (let i = 0; i < state.users.length; i++) {
+        if (id === state.users.id) {
+          type = state.users[i].userType
+        }
+      }
+      return type
     }
   }
 })

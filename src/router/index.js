@@ -13,7 +13,10 @@ const routes = [
   {
     path: '/',
     name: 'login',
-    component: Login
+    component: Login,
+    meta: {
+      requiresNotAuth: true
+    }
   },
   {
     path: '/home',
@@ -22,7 +25,10 @@ const routes = [
       path: '',
       name: 'home',
       component: Home
-    }]
+    }],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/backoffice',
@@ -35,16 +41,15 @@ const routes = [
         component: BackofficeUsers
       },
       {
-        path: '/backoffice/users',
-        name: 'backofficeUsers',
-        component: BackofficeUsers
-      },
-      {
         path: '/backoffice/pontosinteresse',
         name: 'backofficePontosInteresse',
         component: BackofficePontosInteresse
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true,
+      requiresAdminAuth: true
+    }
   },
 ]
 
@@ -52,6 +57,33 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+import store from '@/store/index.js'
+
+router.beforeEach((to, from, next) => {
+  let loggedUser = localStorage.loggedUserId ? parseInt(localStorage.loggedUserId) : 0
+  if (to.matched.some(route => route.meta.requiresAuth)) {
+    if (loggedUser === 0) {
+      next({
+        name: 'login'
+      })
+    } else if(to.matched.some(route => route.meta.requiresAdminAuth)){
+      if (store.getters.getUserTypeById(loggedUser) === "user") {
+        next({
+          name: 'home'
+        })
+      }
+    }
+  }
+  if (to.matched.some(route => route.meta.requiresNotAuth)) {
+    if (loggedUser !== 0) {
+      next({
+        name: 'home'
+      })
+    }
+  }
+  next()
 })
 
 export default router
