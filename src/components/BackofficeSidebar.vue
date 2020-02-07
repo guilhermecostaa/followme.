@@ -1,28 +1,26 @@
 <template lang="html">
 
-  <div id="parentx">
+  <div refs = "backoffice">
 
-    <vs-sidebar static-position parent="body" index="1"  color="primary" class="sidebarx" spacer v-model="active">
+    <vs-sidebar class="sidebar" :parents="$refs.backoffice" :staticPosition="true" index="1" :hidden-background="true"  color="primary"  spacer v-model="active">
 
       <div class="header-sidebar" slot="header">
-        <vs-avatar  size="70px" src="https://randomuser.me/api/portraits/men/85.jpg"/>
-
+        <vs-avatar size="70px" src="https://randomuser.me/api/portraits/men/85.jpg"/>
         <h4>
-          {{this.getLoggedUserNameById}}
           <vs-button color="primary" type="flat"></vs-button>
         </h4>
 
       </div>
 
-      <vs-sidebar-item index="1" @click="btnPerfilClicked">
+      <vs-sidebar-item index="1" :to="{ name: 'backoffice' }">
         Perfil
       </vs-sidebar-item>
 
-      <vs-sidebar-item index="2" @click="btnUtilizadoresClicked">
+      <vs-sidebar-item index="2" :to="{ name: 'backofficeUsers' }">
         Utilizadores
       </vs-sidebar-item>
 
-      <vs-sidebar-item index="3" @click="btnPontosInteresseClicked">
+      <vs-sidebar-item index="3" :to="{ name: 'backofficePontosInteresse' }">
         Pontos de Interesse
       </vs-sidebar-item>
 
@@ -32,29 +30,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   data: () => ({
     active: true
   }),
-  methods: {
-    btnPerfilClicked() {
-      this.$router.push({ name: "backoffice" });
-    },
-    btnUtilizadoresClicked() {
-      this.$router.push({ name: "backofficeUsers" });
-    },
-    btnPontosInteresseClicked() {
-      this.$router.push({ name: "backofficePontosInteresse" });
-    }
-  },
-  computed: {
-    ...mapGetters(["getLoggedUserNameById"])
-  }
 };
 </script>
 
 <style>
+.sidebar {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    overflow-x: hidden;
+}
 .header-sidebar {
   display: flex;
   align-items: center;
