@@ -36,12 +36,12 @@ const routes = [
     component: Backoffice,
     children: [
       {
-        path: '/backoffice/users',
+        path: 'users',
         name: 'backofficeUsers',
         component: BackofficeUsers
       },
       {
-        path: '/backoffice/pontosinteresse',
+        path: 'pontosinteresse',
         name: 'backofficePontosInteresse',
         component: BackofficePontosInteresse
       }
