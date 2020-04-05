@@ -60,7 +60,7 @@ export default {
     ...mapMutations(["ADD_POINT"]),
     async search() {
       const request = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${this.address}&key=AIzaSyCCsmQADrgWSiOCJ3YdkiH0g1jH2wGLjHQ`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${this.address}`
       );
       const city = request.data.results[0].address_components.filter(
         addressComponent =>
