@@ -10,10 +10,10 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-navbar-nav>
-            <b-nav-item href="#">Home</b-nav-item>
-            <b-nav-item href="#">Mapa</b-nav-item>
-            <b-nav-item href="#">Locais</b-nav-item>
+          <b-navbar-nav pills card-header slot="header" v-b-scrollspy:nav-scroller>
+            <b-nav-item href="#Home" @click="scrollIntoView">Home</b-nav-item>
+            <b-nav-item href="#Mapa" @click="scrollIntoView">Mapa</b-nav-item>
+            <b-nav-item href="#Locais" @click="scrollIntoView">Locais</b-nav-item>
           </b-navbar-nav>
 
           <b-nav-item-dropdown right>
@@ -30,6 +30,7 @@
   </div>
 </template>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 export default {
   methods: {
@@ -49,15 +50,22 @@ export default {
         }
       });
     },
-    btnPerfilClicked(){
+    btnPerfilClicked() {
       this.$router.push({ name: "backoffice" });
+    },
+    scrollIntoView(evt) {
+      evt.preventDefault();
+      const href = evt.target.getAttribute("href");
+      const el = href ? document.querySelector(href) : null;
+      if (el) {
+        this.$refs.content.scrollTop = el.offsetTop;
+      }
     }
   }
 };
 </script>
 
 <style scoped>
-
 .navbar-default {
   background-color: #1f6b69 !important;
 }
@@ -69,7 +77,7 @@ export default {
 }
 .nav-item {
   font-size: 1.05rem;
-  color: #CEE6DF !important;
+  color: #cee6df !important;
   font-weight: 600;
   cursor: pointer;
   font-family: Gotham Light;

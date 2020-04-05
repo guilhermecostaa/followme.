@@ -2,7 +2,8 @@
   <div>
     <div class="PRINCIPAL">
       <div class="Texto">
-        <h1>FOLLOW ME.</h1>
+        <div class="page" id="nav-scroller" ref="content"></div>
+        <h1 id="home">FOLLOW ME.</h1>
         <h4>O guia que tu precisas para seres feliz</h4>
         <p>___________________________________________________________________________</p>
         <h4>
@@ -12,6 +13,9 @@
       </div>
     </div>
     <div class="MEIO row">
+      <div class="page" id="nav-scroller" ref="content">
+        <h1 id="mapa">Mapa</h1>
+      </div>
       <form @submit.prevent="search">
         <input type="text" class="form-control" v-model="address" placeholder="Endereço/Local" />
         <input type="text" class="form-control" v-model="name" placeholder="Nome" />
@@ -31,6 +35,10 @@
       </GmapMap>
     </div>
     <div class="FIM"></div>
+    <div class="page" id="nav-scroller" ref="content">
+      <h1 id="locais">Locais</h1>
+      
+    </div>
   </div>
 </template>
 
@@ -55,8 +63,9 @@ export default {
         `https://maps.googleapis.com/maps/api/geocode/json?address=${this.address}&key=AIzaSyCCsmQADrgWSiOCJ3YdkiH0g1jH2wGLjHQ`
       );
       const city = request.data.results[0].address_components.filter(
-        addressComponent => addressComponent.types.some(type => type.toLowerCase() === "locality")
-      )[0].long_name
+        addressComponent =>
+          addressComponent.types.some(type => type.toLowerCase() === "locality")
+      )[0].long_name;
       const point = {
         id: this.getPointsLastId,
         position: request.data.results[0].geometry.location,
@@ -69,7 +78,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getPoints", "getPointsLastId"]),
+    ...mapGetters(["getPoints", "getPointsLastId"])
   }
 };
 </script>
